@@ -66,23 +66,6 @@ It runs on any device with Android 5.0+ (SDK 21+).
 
 ---
 
-## Hosting on GitHub Pages
-
-To publish the HTML version:
-
-1. Create a GitHub repository  
-2. Upload `index.html`  
-3. Go to **Settings → Pages**  
-4. Under **Source** select:  
-   - `Deploy from a branch`  
-   - Branch: `main`  
-   - Folder: `/root`  
-5. Save  
-6. GitHub will give you a live URL similar to:  
-https://your-username.github.io/bunkr/
-
----
-
 ## Repository Contents
 
 index.html → static attendance calculator website
