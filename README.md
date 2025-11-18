@@ -1,11 +1,11 @@
 # Bunkr  
 ### attend smartly  
 
-Bunkr is a simple, lightweight attendance calculator designed to help students track, improve, and plan their attendance more intelligently.  
-This tool exists as both:
+Bunkr is a simple, lightweight attendance calculator designed to help students track, improve, and plan their attendance intelligently.  
+This tool is available as:
 
 - a static HTML website (for GitHub Pages)  
-- an Android app (built in Kotlin)
+- an Android app (Kotlin)
 
 ---
 
