@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bunkr - Attendance Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            max-width: 600px;
+        }
+        h2 { margin-top: 40px; }
+        input, button {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            font-size: 16px;
+        }
+        button {
+            cursor: pointer;
+            background: black;
+            color: white;
+            border: none;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Bunkr</h1>
+<p><i>attend smartly</i></p>
+
+<h2>1. Calculate Attendance %</h2>
+<label>Classes Attended:</label>
+<input id="a1" type="number">
+
+<label>Total Classes:</label>
+<input id="t1" type="number">
+
+<button onclick="calcPercent()">Calculate</button>
+<div id="r1" class="result"></div>
+
+
+<h2>2. Classes Needed to Reach Target %</h2>
+<p><b>Formula:</b> (X - Missed) / X = p/100  
+<br>➡ X = Missed / (1 - p/100)</p>
+
+<label>Classes Already Attended:</label>
+<input id="attended2" type="number">
+
+<label>Current Total Classes:</label>
+<input id="total2" type="number">
+
+<label>Target Attendance % (e.g., 95):</label>
+<input id="target2" type="number">
+
+<button onclick="calcNeeded()">Calculate</button>
+<div id="r2" class="result"></div>
+
+
+<h2>3. How Many Classes You Can Still Miss</h2>
+<p><b>Formula:</b>  
+Max Missable = T - (T/100 × p)</p>
+
+<label>Final Total Classes Planned:</label>
+<input id="t3" type="number">
+
+<label>Required Attendance % (e.g., 95):</label>
+<input id="p3" type="number">
+
+<button onclick="calcMiss()">Calculate</button>
+<div id="r3" class="result"></div>
+
+
+<script>
+// 1) Simple Percentage
+function calcPercent() {
+    let a = Number(document.getElementById("a1").value);
+    let t = Number(document.getElementById("t1").value);
+
+    if (t === 0) {
+        document.getElementById("r1").innerText = "Total classes cannot be zero.";
+        return;
+    }
+
+    let percent = (a / t) * 100;
+    document.getElementById("r1").innerText = "Attendance % = " + percent.toFixed(2) + "%";
+}
+
+
+// 2) Classes needed using your updated formula
+function calcNeeded() {
+    let attended = Number(document.getElementById("attended2").value);
+    let total = Number(document.getElementById("total2").value);
+    let p = Number(document.getElementById("target2").value);
+
+    let missed = total - attended;
+    let frac = p / 100;
+
+    if (frac >= 1) {
+        document.getElementById("r2").innerText = "Target must be less than 100%.";
+        return;
+    }
+
+    // X = M / (1 - p/100)
+    let X = missed / (1 - frac);
+
+    let extra = X - total;
+
+    document.getElementById("r2").innerHTML =
+        "Total classes required (X): " + X.toFixed(2) +
+        "<br>Extra classes needed: " + Math.max(extra, 0).toFixed(2);
+}
+
+
+// 3) Max classes that can be missed
+function calcMiss() {
+    let T = Number(document.getElementById("t3").value);
+    let p = Number(document.getElementById("p3").value);
+
+    let miss = T - (T * p / 100);
+
+    document.getElementById("r3").innerText =
+        "You can miss up to " + miss.toFixed(2) + " classes.";
+}
+</script>
+
+</body>
+</html>
