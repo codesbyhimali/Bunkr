@@ -21,11 +21,11 @@ Goal:
 
 Definitions:
 Missed = TotalClasses - Attended
-(X - Missed) / X = p / 100
+(X - Missed) / X = G / 100
 
 
 Solve for required total classes:
-X = Missed / (1 - p/100)
+X = Missed / (1 - G/100)
 
 
 Extra classes needed:

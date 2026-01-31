@@ -183,8 +183,8 @@ fun MaxMissableCalculator() {
 
                     result = if (numFinalTotal > 0 && numDesired > 0) {
                         // This is the simplified formula from your PDF [cite: 34]
-                        val p = numDesired / 100.0
-                        val maxMiss = numFinalTotal * (1.0 - p)
+                        val G = numDesired / 100.0
+                        val maxMiss = numFinalTotal * (1.0 - G)
                         "To get $numDesired%, you can miss a TOTAL of ${floor(maxMiss).toInt()} classes."
                     } else {
                         "Please enter valid numbers."
@@ -251,21 +251,21 @@ fun ClassesToAttendCalculator() {
                 onClick = {
                     val A = currentAttended.toDoubleOrNull() ?: 0.0
                     val T = currentTotal.toDoubleOrNull() ?: 0.0
-                    val p = desiredPercent.toDoubleOrNull() ?: 0.0
+                    val G = desiredPercent.toDoubleOrNull() ?: 0.0
 
                     // This logic solves for 'x' in the equation:
-                    // (A + x) / (T + x) = p / 100
+                    // (A + x) / (T + x) = G / 100
                     // This matches the goal of "how many more classes to attend"
 
                     val currentPercentage = if (T > 0) (A / T) * 100 else 0.0
 
-                    result = if (p <= currentPercentage) {
+                    result = if (G <= currentPercentage) {
                         "You already have ${String.format("%.2f", currentPercentage)}%!"
-                    } else if (p >= 100) {
+                    } else if (G >= 100) {
                         "You can't reach 100% (or more) unless you've attended all classes."
                     } else {
-                        val numerator = (p * T) - (100 * A)
-                        val denominator = 100 - p
+                        val numerator = (G * T) - (100 * A)
+                        val denominator = 100 - G
                         val classesNeeded = ceil(numerator / denominator)
 
                         if (classesNeeded > 0) {
